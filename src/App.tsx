@@ -51,6 +51,7 @@ function App() {
       await removeStock(stockName);
       await fetchWatchlist(); // Refresh the list after deletion
     } catch (err) {
+      console.log(err);
       setError('Failed to delete stock from watchlist');
       setIsLoading(false);
     }

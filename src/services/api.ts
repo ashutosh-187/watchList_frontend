@@ -14,19 +14,17 @@ export const getWatchlist = async (): Promise<WatchlistResponse> => {
 };
 
 export const addStock = async (instrument: string) => {
-  instrument = instrument
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
+  instrument = instrument.toUpperCase()
   const response = await api.get(`/watch_list/add_instrument`, {
     params: { instrument },
   });
   return response.data;
 };
 
-export const removeStock = async (name: string): Promise<AddStockResponse> => {
-  const response = await api.post<AddStockResponse>('/watch_list/remove_instruments', [
-    { name }
-  ]);
+export const removeStock = async (instrument: string) => {
+  instrument = instrument.toUpperCase()
+  const response = await api.get('/watch_list/remove_instrument', {
+    params: { instrument },
+  });
   return response.data;
 };
